@@ -15,10 +15,6 @@ class TransacaoStoreRequest extends FormRequest
     {
         return [
             'telegram_id' => ['required', 'string', 'exists:usuarios,telegram_id'],
-            'tipo' => ['required', 'in:credito,debito'],
-            'categoria' => ['nullable'],
-            'valor' => ['required', 'numeric'],
-            'descricao' => ['nullable'],
             'mensagem_original' => ['required']
         ];
     }

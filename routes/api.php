@@ -21,4 +21,3 @@ Route::get('/', fn() => response()->json(['message' => 'Bem-vindo a API Sistema 
 Route::get('/usuarios', [UsuarioController::class, 'index']);
 Route::post('/usuarios', [UsuarioController::class, 'store']);
 Route::post('/transacoes', [TransacaoController::class, 'store']);
-Route::post('/transacoes/pendentes', [PendenteController::class, 'store']);
