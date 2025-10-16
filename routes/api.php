@@ -22,3 +22,4 @@ Route::post('/usuarios', [UsuarioController::class, 'store']);
 Route::delete('/usuarios', [UsuarioController::class, 'delete']);
 
 Route::post('/transacoes', [TransacaoController::class, 'store']);
+Route::delete('/transacoes/{id}', [TransacaoController::class, 'delete']);

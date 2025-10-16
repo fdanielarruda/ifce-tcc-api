@@ -29,7 +29,7 @@ class UsuarioController extends Controller
         $user = $this->service->create($data);
 
         return response()->json([
-            'message' => 'Usuário salvo com sucesso',
+            'mensagem' => 'Usuário salvo com sucesso',
             'usuario' => $user
         ]);
     }
@@ -40,7 +40,7 @@ class UsuarioController extends Controller
         $this->service->delete($data);
 
         return response()->json([
-            'message' => 'Usuário deletado com sucesso'
+            'mensagem' => 'Usuário deletado com sucesso'
         ]);
     }
 }

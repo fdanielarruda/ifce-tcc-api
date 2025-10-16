@@ -38,16 +38,16 @@ class OpenAiLibrary
         return json_decode($content, true);
     }
 
-    public function converterLinguagemNaturalParaJson(string $texto): array
-    { 
-        $comando = "Extraia as informações desta transação financeira: ${texto}\n"
+    public function naturalLanguageToJsonConverter(string $text): array
+    {
+        $comando = "Extraia as informações desta transação financeira: $text\n"
             . "Retorne APENAS um JSON válido com estas chaves obrigatórias:\n"
             . "tipo: 'debito' ou 'credito'\n"
             . "categoria: 'alimentacao', 'salario', 'transporte', 'lazer' ou 'desconhecido'\n"
             . "valor: número (apenas o valor numérico, sem símbolos)\n"
             . "descricao: texto curto descritivo\n"
             . "Exemplo de resposta: { 'tipo': 'debito', 'categoria': 'alimentacao', 'valor': 20, 'descricao', 'hamburguer' }\n"
-            . "Se não conseguir extrair todas as informações obrigatórias, retorne vazio";
+            . "Se não conseguir extrair todas as informações obrigatórias retorne vazio";
 
         $messages = [
             [
