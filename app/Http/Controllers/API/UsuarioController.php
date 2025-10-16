@@ -3,32 +3,44 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Usuarios\UsuarioDeleteRequest;
 use App\Http\Requests\Usuarios\UsuarioIndexRequest;
 use App\Http\Requests\Usuarios\UsuarioStoreRequest;
-use App\Models\Usuario;
-use Illuminate\Support\Facades\Hash;
+use App\Services\UsuarioService;
 
 class UsuarioController extends Controller
 {
+    public function __construct(
+        protected UsuarioService $service
+    ) {}
+
     public function index(UsuarioIndexRequest $request)
     {
         $data = $request->validated();
-        $usuarios = Usuario::where($data)->get();
 
         return response()->json([
-            'usuarios' => $usuarios
+            'usuarios' => $this->service->list($data)
         ]);
     }
 
     public function store(UsuarioStoreRequest $request)
     {
         $data = $request->validated();
-        $data['password'] = Hash::make('123456789');
-
-        Usuario::create($data);
+        $user = $this->service->create($data);
 
         return response()->json([
-            'message' => 'Usuário salvo com sucesso'
+            'message' => 'Usuário salvo com sucesso',
+            'usuario' => $user
+        ]);
+    }
+
+    public function delete(UsuarioDeleteRequest $request)
+    {
+        $data = $request->validated();
+        $this->service->delete($data);
+
+        return response()->json([
+            'message' => 'Usuário deletado com sucesso'
         ]);
     }
 }
